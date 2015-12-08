@@ -37,8 +37,8 @@ public class Demon : MonoBehaviour {
 	}
 
 	IEnumerator GoThere() {
-		this.animation.wrapMode = WrapMode.Loop;
-		this.animation.Play ("Walk");
+		this.GetComponent<Animation>().wrapMode = WrapMode.Loop;
+		this.GetComponent<Animation>().Play ("Walk");
 
 		if(transform.position == navMesh.destination) {
 			notThere = false;
@@ -49,8 +49,8 @@ public class Demon : MonoBehaviour {
 
 	IEnumerator Attack() {
 		while (health > 0 && !onPause) {
-			this.animation.wrapMode = WrapMode.Once;
-			this.gameObject.animation.CrossFade ("Attack");
+			this.GetComponent<Animation>().wrapMode = WrapMode.Once;
+			this.gameObject.GetComponent<Animation>().CrossFade ("Attack");
 			transform.LookAt(spaceship.transform.position);
 			
 			spaceship.GetComponent<Spaceship> ().GetHit (this.damage);
@@ -61,10 +61,10 @@ public class Demon : MonoBehaviour {
 	IEnumerator WaitAndDisappear() {
 		navMesh.Stop ();
 		notThere = false;
-		this.animation.Stop ();
+		this.GetComponent<Animation>().Stop ();
 
-		this.animation.wrapMode = WrapMode.ClampForever;
-		this.gameObject.animation.CrossFade("Die");
+		this.GetComponent<Animation>().wrapMode = WrapMode.ClampForever;
+		this.gameObject.GetComponent<Animation>().CrossFade("Die");
 		yield return new WaitForSeconds(2);
 		StopAllCoroutines ();
 		Destroy (gameObject);

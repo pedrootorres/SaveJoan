@@ -18,7 +18,7 @@ function Start(){
 	laserColor = Color(0,0,0);
 	for (var i = 0; i < transform.childCount; i++){
 		var child : Transform = transform.GetChild(i);
-		child.renderer.material.SetColor("_TintColor", laserColor);
+		child.GetComponent.<Renderer>().material.SetColor("_TintColor", laserColor);
 	}
 }
 
@@ -33,7 +33,7 @@ function Update () {
 	for (var i = 0; i < transform.childCount; i++){
 		var child : Transform = transform.GetChild(i);
 		if(child.name == "visual"){
-			child.renderer.material.SetColor("_TintColor", laserColor);
+			child.GetComponent.<Renderer>().material.SetColor("_TintColor", laserColor);
 			child.localScale = Vector3.one * 0.1;
 			child.localScale.y = length + 2.0 * curveProgress + Random.value*1.0;
 		}

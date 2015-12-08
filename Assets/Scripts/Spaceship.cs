@@ -27,10 +27,10 @@ public class Spaceship : MonoBehaviour {
 		if(health > 0) {
 			this.health -= damage;
 
-			player.transform.FindChild("smoothWorldPosition").FindChild("soldierCamera").FindChild("Right").gameObject.particleSystem.enableEmission = true;
-			player.transform.FindChild("smoothWorldPosition").FindChild("soldierCamera").FindChild("Left").gameObject.particleSystem.enableEmission = true;
-			player.transform.FindChild("smoothWorldPosition").FindChild("soldierCamera").FindChild("Up").gameObject.particleSystem.enableEmission = true;
-			player.transform.FindChild("smoothWorldPosition").FindChild("soldierCamera").FindChild("Down").gameObject.particleSystem.enableEmission = true;
+			player.transform.FindChild("smoothWorldPosition").FindChild("soldierCamera").FindChild("Right").gameObject.GetComponent<ParticleSystem>().enableEmission = true;
+			player.transform.FindChild("smoothWorldPosition").FindChild("soldierCamera").FindChild("Left").gameObject.GetComponent<ParticleSystem>().enableEmission = true;
+			player.transform.FindChild("smoothWorldPosition").FindChild("soldierCamera").FindChild("Up").gameObject.GetComponent<ParticleSystem>().enableEmission = true;
+			player.transform.FindChild("smoothWorldPosition").FindChild("soldierCamera").FindChild("Down").gameObject.GetComponent<ParticleSystem>().enableEmission = true;
 
 			StartCoroutine(BlinkRed());
 
@@ -48,10 +48,10 @@ public class Spaceship : MonoBehaviour {
 	IEnumerator BlinkRed() {
 		yield return new WaitForSeconds (0.1f);
 		if (player != null) {
-			player.transform.FindChild("smoothWorldPosition").FindChild("soldierCamera").FindChild("Right").gameObject.particleSystem.enableEmission = false;
-			player.transform.FindChild("smoothWorldPosition").FindChild("soldierCamera").FindChild("Left").gameObject.particleSystem.enableEmission = false;
-			player.transform.FindChild("smoothWorldPosition").FindChild("soldierCamera").FindChild("Up").gameObject.particleSystem.enableEmission = false;
-			player.transform.FindChild("smoothWorldPosition").FindChild("soldierCamera").FindChild("Down").gameObject.particleSystem.enableEmission = false;
+			player.transform.FindChild("smoothWorldPosition").FindChild("soldierCamera").FindChild("Right").gameObject.GetComponent<ParticleSystem>().enableEmission = false;
+			player.transform.FindChild("smoothWorldPosition").FindChild("soldierCamera").FindChild("Left").gameObject.GetComponent<ParticleSystem>().enableEmission = false;
+			player.transform.FindChild("smoothWorldPosition").FindChild("soldierCamera").FindChild("Up").gameObject.GetComponent<ParticleSystem>().enableEmission = false;
+			player.transform.FindChild("smoothWorldPosition").FindChild("soldierCamera").FindChild("Down").gameObject.GetComponent<ParticleSystem>().enableEmission = false;
 		}
 	}
 }

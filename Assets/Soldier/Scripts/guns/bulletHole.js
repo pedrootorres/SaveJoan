@@ -9,7 +9,7 @@ function Start(){
 	startTime = Time.time;
 	destroyTime = Time.time + life;
 	var chooseId : int = Mathf.RoundToInt(Random.Range(0,materials.Length));
-	renderer.material = materials[chooseId];
+	GetComponent.<Renderer>().material = materials[chooseId];
 	var parent : Transform = transform.parent;
 	transform.parent = null;
 	transform.localRotation.eulerAngles.z = Random.value * 360;
@@ -24,6 +24,6 @@ function Update () {
 	//var age = Time.time - startTime;
 	if (Time.time > destroyTime - 1.0){
 		var fadeProgress : float = destroyTime-Time.time;
-		renderer.material.color.a = fadeProgress;
+		GetComponent.<Renderer>().material.color.a = fadeProgress;
 	}
 }

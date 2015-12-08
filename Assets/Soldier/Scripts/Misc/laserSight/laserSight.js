@@ -18,7 +18,7 @@ function Update () {
 	var hit : RaycastHit;
 	var maxLength : float = 20.0;
 	if(disableRootCollider){
-		transform.root.collider.enabled = false;
+		transform.root.GetComponent.<Collider>().enabled = false;
 	}
 	if(Physics.Raycast(transform.position, transform.forward, hit) && on){
 		triggerChildrenColliderScript = hit.transform.root.GetComponent(triggerChildrenCollider);//Children collider property.
@@ -51,7 +51,7 @@ function Update () {
 		laserPointTransform.GetComponent(laserPoint).on = false;
 	}
 	if(disableRootCollider){
-		transform.root.collider.enabled = true;
+		transform.root.GetComponent.<Collider>().enabled = true;
 	}
 	laserLineRate = maxLength * 0.5;
 	

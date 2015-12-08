@@ -8,7 +8,7 @@ private var flyingSparkAmountVariation : int = 2;
 
 function Start(){
 	var materialID : int = Mathf.FloorToInt(Random.value * material.Length);
-	renderer.material = material[materialID];
+	GetComponent.<Renderer>().material = material[materialID];
 	destroyTime = Time.time + life;
 	angle = Random.value * 360; 
 	transform.LookAt(Camera.main.transform.position);

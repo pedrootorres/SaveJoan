@@ -20,7 +20,7 @@ function Update () {
 		nextdustCloudTime = Time.time + (1.0 / rate);
 		var newDustCloud : GameObject = Instantiate(dustCloudPrefab,transform.position,transform.rotation);
 		var materialId : int = Mathf.RoundToInt(Random.Range(0,materials.Length-1));
-		newDustCloud.renderer.material = materials[materialId];
+		newDustCloud.GetComponent.<Renderer>().material = materials[materialId];
 		newDustCloud.GetComponent("dustCloud").velocity = velocity;
 	}
 }

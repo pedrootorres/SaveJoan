@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 		allTurrets = new List<GameObject> ();
 		menuCameraInstance = Instantiate (menuCamera) as Camera;
-		menuCamera.camera.enabled = true;
+		menuCamera.GetComponent<Camera>().enabled = true;
 
 		gameHasStarted = false;
 		onPause = false;
@@ -127,10 +127,10 @@ public class GameManager : MonoBehaviour {
 			if(menuIsOpen) {
 				this.Unpaused();
 				
-				mapCamera.camera.enabled = false;
+				mapCamera.GetComponent<Camera>().enabled = false;
 				mapCamera.orthographic = false;
 				Screen.lockCursor = true;
-				Screen.showCursor = false;
+				Cursor.visible = false;
 				
 				Destroy (justSoldierInstance);
 				playerInstance.gameObject.SetActive(true);
@@ -144,11 +144,11 @@ public class GameManager : MonoBehaviour {
 				// pause game
 				onPause = true;
 				
-				menuCamera.camera.enabled = true;
+				menuCamera.GetComponent<Camera>().enabled = true;
 				playerInstance.gameObject.SetActive(false);
 				
 				Screen.lockCursor = false;
-				Screen.showCursor = true;
+				Cursor.visible = true;
 				
 				this.OnPause();
 				
@@ -161,10 +161,10 @@ public class GameManager : MonoBehaviour {
 				if(menuIsOpen) {
 					this.Unpaused();
 
-					mapCamera.camera.enabled = false;
+					mapCamera.GetComponent<Camera>().enabled = false;
 					mapCamera.orthographic = false;
 					Screen.lockCursor = true;
-					Screen.showCursor = false;
+					Cursor.visible = false;
 
 					Destroy (justSoldierInstance);
 					playerInstance.gameObject.SetActive(true);
@@ -177,11 +177,11 @@ public class GameManager : MonoBehaviour {
 				} else {
 					this.OnPause();
 
-					mapCamera.camera.enabled = true;
+					mapCamera.GetComponent<Camera>().enabled = true;
 					mapCamera.orthographic = true;
 					mapCamera.orthographicSize = 50;
 					Screen.lockCursor = false;
-					Screen.showCursor = true;
+					Cursor.visible = true;
 
 					justSoldierInstance = Instantiate(justSoldier, playerInstance.transform.position, Quaternion.identity) as GameObject;
 					playerInstance.gameObject.SetActive(false);
@@ -270,10 +270,10 @@ public class GameManager : MonoBehaviour {
 			if(GUI.Button(new Rect(Screen.width/2 - 50, Screen.height/2 - 17.5f, 100, 25), "Resume Game")) {
 				Time.timeScale = 1;
 				playerInstance.gameObject.SetActive(true);
-				menuCamera.camera.enabled = false;
+				menuCamera.GetComponent<Camera>().enabled = false;
 
 				Screen.lockCursor = true;
-				Screen.showCursor = false;
+				Cursor.visible = false;
 
 				this.Unpaused();
 
@@ -368,9 +368,9 @@ public class GameManager : MonoBehaviour {
 			mapInstance = Instantiate (map) as Terrain;
 		}
 
-		mapCamera = mapInstance.transform.FindChild ("Camera").camera;
-		mapCamera.camera.enabled = false;
-		menuCamera.camera.enabled = false;
+		mapCamera = mapInstance.transform.FindChild ("Camera").GetComponent<Camera>();
+		mapCamera.GetComponent<Camera>().enabled = false;
+		menuCamera.GetComponent<Camera>().enabled = false;
 		
 		gameTitleInstance.enabled = false;
 
@@ -391,7 +391,7 @@ public class GameManager : MonoBehaviour {
 		waveManagerInstance = Instantiate (waveManager) as GameObject;
 
 		Screen.lockCursor = true;
-		Screen.showCursor = false;
+		Cursor.visible = false;
 
 		playerInstance = Instantiate (player, new Vector3 (17, 8.5f, 6), Quaternion.identity) as GameObject;
 		gameHasStarted = true;
@@ -412,10 +412,10 @@ public class GameManager : MonoBehaviour {
 
 		mapInstance.transform.FindChild ("Camera").transform.position = new Vector3(29, 10, 26);
 		mapInstance.transform.FindChild ("Camera").LookAt (spaceship.transform.position);
-		mapInstance.transform.FindChild ("Camera").camera.enabled = true;
+		mapInstance.transform.FindChild ("Camera").GetComponent<Camera>().enabled = true;
 
 		Screen.lockCursor = false;
-		Screen.showCursor = true;
+		Cursor.visible = true;
 
 		gameHasStarted = false;
 		gameTitleInstance.enabled = true;

@@ -39,7 +39,7 @@ function Update () {
 	angle += turnSpeed * Time.deltaTime;
 	transform.localRotation.eulerAngles.z = angle;
 	transform.localScale = Vector3.Lerp(Vector3.one*startScale , Vector3.one * endScale, falloffProgress);
-	var cloudColor : Color = renderer.material.GetColor("_Color");
+	var cloudColor : Color = GetComponent.<Renderer>().material.GetColor("_Color");
 	cloudColor.a = Mathf.Lerp(cloudColor.a, 0, Time.deltaTime * life);
-	renderer.material.SetColor("_Color", cloudColor);
+	GetComponent.<Renderer>().material.SetColor("_Color", cloudColor);
 }

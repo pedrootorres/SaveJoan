@@ -10,7 +10,7 @@ var showCursor : boolean = false;
 
 function Start(){
 	Screen.lockCursor = lockCursorCheck;
-	Screen.showCursor = showCursor;
+	Cursor.visible = showCursor;
 }
 function Update () {
 	if (Input.GetKey ("escape")) {

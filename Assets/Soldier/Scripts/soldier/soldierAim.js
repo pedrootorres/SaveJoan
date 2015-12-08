@@ -59,7 +59,7 @@ function Start(){
 
 function LateUpdate(){
 	//Target.
-	var targetRay : Ray = soldierCamera.camera.ViewportPointToRay(crosshair.position);
+	var targetRay : Ray = soldierCamera.GetComponent.<Camera>().ViewportPointToRay(crosshair.position);
 	var targetRayDistance : float = 300.0;
 	var targetHit : RaycastHit;
 	targetTarget = targetRay.origin + targetRay.direction * targetRayDistance;

@@ -41,10 +41,10 @@ public class Robot : MonoBehaviour {
 	IEnumerator GoThere() {
 		transform.LookAt (castle + (new Vector3(0, 0, 50)));
 
-		this.animation.wrapMode = WrapMode.Loop;
+		this.GetComponent<Animation>().wrapMode = WrapMode.Loop;
 		anim = GetComponent("Animation") as Animation;
 		anim ["loop_run_funny"].speed = 4.0f;
-		this.animation.Play ("loop_run_funny");
+		this.GetComponent<Animation>().Play ("loop_run_funny");
 		
 		if(transform.position == navMesh.destination) {
 			notThere = false;
@@ -55,8 +55,8 @@ public class Robot : MonoBehaviour {
 
 	IEnumerator Attack() {	
 		while (health > 0 && !onPause) {
-			this.animation.wrapMode = WrapMode.Once;
-			this.gameObject.animation.CrossFade ("kick_jump_right");
+			this.GetComponent<Animation>().wrapMode = WrapMode.Once;
+			this.gameObject.GetComponent<Animation>().CrossFade ("kick_jump_right");
 			transform.LookAt(spaceship.transform.position);
 			
 			spaceship.GetComponent<Spaceship> ().GetHit (this.damage);
@@ -67,12 +67,12 @@ public class Robot : MonoBehaviour {
 	IEnumerator WaitAndDisappear() {
 		navMesh.Stop ();
 		notThere = false;
-		this.animation.Stop ();
+		this.GetComponent<Animation>().Stop ();
 
 		transform.name = "_Robot";
 
-		this.animation.wrapMode = WrapMode.ClampForever;
-		this.gameObject.animation.CrossFade("final_head");
+		this.GetComponent<Animation>().wrapMode = WrapMode.ClampForever;
+		this.gameObject.GetComponent<Animation>().CrossFade("final_head");
 		yield return new WaitForSeconds(3);
 		StopAllCoroutines ();
 		Destroy (gameObject);

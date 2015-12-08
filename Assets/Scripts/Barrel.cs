@@ -24,25 +24,25 @@ public class Barrel : MonoBehaviour {
 			
 			if(health <= 0) {
 				explosionInstance = Instantiate(explosion, this.transform.position, Quaternion.identity) as GameObject;
-				this.transform.FindChild("Barrel").renderer.enabled = false;
+				this.transform.FindChild("Barrel").GetComponent<Renderer>().enabled = false;
 
-				this.transform.FindChild("Explosion").audio.Play();
+				this.transform.FindChild("Explosion").GetComponent<AudioSource>().Play();
 
 				Vector3 rayPosition = explosionInstance.transform.position;
 				
 				Collider[] hits = Physics.OverlapSphere(rayPosition, 10);
 				
 				foreach(Collider hit in hits) {
-					if(hit.collider.gameObject.name == "Spider(Clone)") {
-						hit.collider.GetComponent<Spider>().GetHit(100);
-					} else if(hit.collider.gameObject.name == "Troll(Clone)") {
-						hit.collider.GetComponent<Troll>().GetHit(100);
-					} else if (hit.collider.gameObject.name == "Robot(Clone)") {
-						hit.collider.GetComponent<Robot>().GetHit(100);
-					} else if (hit.collider.gameObject.name == "Demon(Clone)") {
-						hit.collider.GetComponent<Demon>().GetHit(100);
-					} else if (hit.collider.gameObject.name == "Alien(Clone)") {
-						hit.collider.GetComponent<Alien>().GetHit(100);
+					if(hit.GetComponent<Collider>().gameObject.name == "Spider(Clone)") {
+						hit.GetComponent<Collider>().GetComponent<Spider>().GetHit(100);
+					} else if(hit.GetComponent<Collider>().gameObject.name == "Troll(Clone)") {
+						hit.GetComponent<Collider>().GetComponent<Troll>().GetHit(100);
+					} else if (hit.GetComponent<Collider>().gameObject.name == "Robot(Clone)") {
+						hit.GetComponent<Collider>().GetComponent<Robot>().GetHit(100);
+					} else if (hit.GetComponent<Collider>().gameObject.name == "Demon(Clone)") {
+						hit.GetComponent<Collider>().GetComponent<Demon>().GetHit(100);
+					} else if (hit.GetComponent<Collider>().gameObject.name == "Alien(Clone)") {
+						hit.GetComponent<Collider>().GetComponent<Alien>().GetHit(100);
 					}
 				}
 				

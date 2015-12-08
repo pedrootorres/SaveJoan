@@ -63,7 +63,7 @@ public class Alien : MonoBehaviour {
 	IEnumerator WaitAndDisappear() {
 		navMesh.Stop ();
 		notThere = false;
-		this.animation.Stop ();
+		this.GetComponent<Animation>().Stop ();
 
 		anim.wrapMode = WrapMode.ClampForever;
 		anim ["dead"].speed = 3.0f;

@@ -73,7 +73,7 @@ public class WaveManager : MonoBehaviour {
 			yield return new WaitForSeconds(1);
 		}
 		// break between waves
-		wave1Instance.audio.Stop ();
+		wave1Instance.GetComponent<AudioSource>().Stop ();
 		Destroy (wave1Instance);
 		yield return new WaitForSeconds (6);
 
@@ -87,7 +87,7 @@ public class WaveManager : MonoBehaviour {
 			yield return new WaitForSeconds(1);
 		}
 		// break between waves
-		wave2Instance.audio.Stop ();
+		wave2Instance.GetComponent<AudioSource>().Stop ();
 		Destroy (wave2Instance);
 		yield return new WaitForSeconds (6);
 
@@ -101,7 +101,7 @@ public class WaveManager : MonoBehaviour {
 			yield return new WaitForSeconds(1);
 		}
 		// break between waves
-		wave3Instance.audio.Stop ();
+		wave3Instance.GetComponent<AudioSource>().Stop ();
 		Destroy (wave3Instance);
 		yield return new WaitForSeconds (6);
 
@@ -114,7 +114,7 @@ public class WaveManager : MonoBehaviour {
 		while (totalEnemies != 0 || enemiesToProduce != 0) {
 			yield return new WaitForSeconds(1);
 		}
-		wave4Instance.audio.Stop ();
+		wave4Instance.GetComponent<AudioSource>().Stop ();
 		Destroy (wave4Instance);
 		yield return new WaitForSeconds (6);
 
@@ -128,7 +128,7 @@ public class WaveManager : MonoBehaviour {
 			yield return new WaitForSeconds(1);
 		}
 		// break between waves
-		wave5Instance.audio.Stop ();
+		wave5Instance.GetComponent<AudioSource>().Stop ();
 		Destroy (wave5Instance);
 		yield return new WaitForSeconds (6);
 
@@ -228,21 +228,21 @@ public class WaveManager : MonoBehaviour {
 
 	public void PauseGame() {
 		if(currentMusic != null) {
-			currentMusic.audio.Pause ();
+			currentMusic.GetComponent<AudioSource>().Pause ();
 		}
 		onPause = true;
 	}
 
 	public void ResumeGame() {
 		if(currentMusic != null) {
-			currentMusic.audio.Play();
+			currentMusic.GetComponent<AudioSource>().Play();
 		}
 		onPause = false;
 	}
 
 	public void GameOver() {
 		if(currentMusic != null) {
-			currentMusic.audio.Stop ();
+			currentMusic.GetComponent<AudioSource>().Stop ();
 			Destroy (currentMusic);
 		}
 	}

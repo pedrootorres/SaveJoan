@@ -69,25 +69,25 @@ function Update (){
 	}
 	spinningTurretScript.on = firing;
 	if(bulletTraceGeneratorScript.on){
-		rigidbody.AddForceAtPosition(bulletTraceGenerator.up* Time.deltaTime * Random.value * 1900, bulletTraceGenerator.position) ;
+		GetComponent.<Rigidbody>().AddForceAtPosition(bulletTraceGenerator.up* Time.deltaTime * Random.value * 1900, bulletTraceGenerator.position) ;
 	}
 	if(sentryHealth <= 0 && exploded == false){//Explosion.
 		exploded = true;
 		Instantiate(explosionPrefab,pitch.position,pitch.rotation);
-		rigidbody.AddForce(Vector3.up*400.0);
+		GetComponent.<Rigidbody>().AddForce(Vector3.up*400.0);
 		var newBlackSmoke : GameObject = Instantiate(blackSmokePrefab,pitch.position,pitch.rotation);
 		newBlackSmoke.transform.parent = transform;
 	}
 	if(barrel.position.y < transform.position.y + 0.2 || sentryHealth == 0){
-		collider.enabled = false;
-		base.collider.enabled = true;
-		base.collider.isTrigger = false;
-		rotator.collider.enabled = true;
-		rotator.collider.isTrigger = false;
-		pitch.collider.enabled = true;
-		pitch.collider.isTrigger = false;
-		barrel.collider.enabled = true;
-		barrel.collider.isTrigger = false;
+		GetComponent.<Collider>().enabled = false;
+		base.GetComponent.<Collider>().enabled = true;
+		base.GetComponent.<Collider>().isTrigger = false;
+		rotator.GetComponent.<Collider>().enabled = true;
+		rotator.GetComponent.<Collider>().isTrigger = false;
+		pitch.GetComponent.<Collider>().enabled = true;
+		pitch.GetComponent.<Collider>().isTrigger = false;
+		barrel.GetComponent.<Collider>().enabled = true;
+		barrel.GetComponent.<Collider>().isTrigger = false;
 		firing = false; //Deactivate if laying on the ground.
 		laserSightScript.on = false;
 		rotatorSpeed = Mathf.Lerp(rotatorSpeed,0, Time.deltaTime * rotatorAcceleration);

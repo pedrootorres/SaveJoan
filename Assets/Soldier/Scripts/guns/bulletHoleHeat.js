@@ -17,8 +17,8 @@ function Update () {
 	}
 	var age : float = Time.time - startTime;
 	var progress : float = age / life;
-	var heatColor = renderer.material.GetColor("_TintColor");
+	var heatColor = GetComponent.<Renderer>().material.GetColor("_TintColor");
 	heatColor = Color.Lerp(startColor, endColor, progress);
 	heatColor.a = Mathf.Lerp(1,0,progress);
-	renderer.material.SetColor("_TintColor", heatColor);
+	GetComponent.<Renderer>().material.SetColor("_TintColor", heatColor);
 }

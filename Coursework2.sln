@@ -7,8 +7,6 @@ Project("{EF126A32-FC65-4F2F-7FB4-C43AAFA26ECA}") = "Coursework2", "Assembly-CSh
 EndProject
 Project("{EF126A32-FC65-4F2F-7FB4-C43AAFA26ECA}") = "Coursework2", "Assembly-CSharp-Editor.csproj", "{7B66EDD5-7EBF-D7A8-C88D-3BAF10C3B5A3}"
 EndProject
-Project("{EF126A32-FC65-4F2F-7FB4-C43AAFA26ECA}") = "Coursework2", "Assembly-UnityScript.unityproj", "{6A89BFA4-FCE5-F686-9FEF-AFCA9FCCDA5C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,15 +25,11 @@ Global
 		{7B66EDD5-7EBF-D7A8-C88D-3BAF10C3B5A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B66EDD5-7EBF-D7A8-C88D-3BAF10C3B5A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B66EDD5-7EBF-D7A8-C88D-3BAF10C3B5A3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6A89BFA4-FCE5-F686-9FEF-AFCA9FCCDA5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6A89BFA4-FCE5-F686-9FEF-AFCA9FCCDA5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6A89BFA4-FCE5-F686-9FEF-AFCA9FCCDA5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6A89BFA4-FCE5-F686-9FEF-AFCA9FCCDA5C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																																																																											GlobalSection(MonoDevelopProperties) = preSolution
+																																																																																																												GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

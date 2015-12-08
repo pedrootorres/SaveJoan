@@ -9,7 +9,7 @@ function Update () {
 	if(Time.time > destroyTime){
 		Destroy(gameObject);
 	}
-	if(Time.time > destroyTime - particleEmitter.maxEnergy){
-		particleEmitter.emit = false;
+	if(Time.time > destroyTime - GetComponent.<ParticleEmitter>().maxEnergy){
+		GetComponent.<ParticleEmitter>().emit = false;
 	}
 }

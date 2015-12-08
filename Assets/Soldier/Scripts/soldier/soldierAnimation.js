@@ -133,7 +133,7 @@ function LateUpdate(){
 	var blendSpeed : float = 0.2;
 	fallingBlend = fallingBlendCurve.Evaluate(fallDuration); //Falling blend.
 	fallingBlend *= dieInhibit;
-	animation.Blend("soldierFalling",fallingBlend,blendSpeed);
+	GetComponent.<Animation>().Blend("soldierFalling",fallingBlend,blendSpeed);
 	var fallingInhibit : float = Mathf.Pow(Mathf.Abs(1 - fallingBlend),2.0);//Make other animations inhibit when falling.
 	if(Time.time < lastLandingTime + landingDuration){ //Landing blend.
 		var timeSinceLanding : float =  Time.time - lastLandingTime;
@@ -141,8 +141,8 @@ function LateUpdate(){
 		landingProgress = Mathf.Pow(landingProgress, 0.6);
 		landingBlend = 1 - landingProgress;
 		var landingAnimationStartTime : float = Mathf.Clamp01(1 - landingDuration);
-		animation["soldierLanding"].time = Mathf.Lerp(landingAnimationStartTime, 1.0 ,landingProgress);
-		animation.Blend("soldierLanding",landingBlend,0.05);
+		GetComponent.<Animation>()["soldierLanding"].time = Mathf.Lerp(landingAnimationStartTime, 1.0 ,landingProgress);
+		GetComponent.<Animation>().Blend("soldierLanding",landingBlend,0.05);
 		landingInhibit = Mathf.Pow(1 - landingBlend,2.0);
 	}
 	else{
@@ -159,28 +159,28 @@ function LateUpdate(){
 	idleBlend *= hitInhibit;
 	idleBlend *= dieInhibit;
 	//idleBlend = Mathf.Clamp01(idleBlend);
-	animation.Blend("soldierIdle",idleBlend,blendSpeed);
+	GetComponent.<Animation>().Blend("soldierIdle",idleBlend,blendSpeed);
 	walkBlend = walkBlendCurve.Evaluate(Mathf.Abs(forwardSpeed)); //Walk blend.
 	walkBlend *= fallingInhibit;
 	walkBlend *= landingInhibit;
 	walkBlend *= crouchInhibit;
 	walkBlend *= dieInhibit;
 	walkBlend = Mathf.Clamp01(walkBlend);
-	animation.Blend("soldierWalk",walkBlend,blendSpeed);
+	GetComponent.<Animation>().Blend("soldierWalk",walkBlend,blendSpeed);
 	runBlend = runBlendCurve.Evaluate(Mathf.Abs(forwardSpeed)); //Run blend.
 	runBlend *= fallingInhibit;
 	runBlend *= landingInhibit;
 	runBlend  *= crouchInhibit;
 	runBlend *= dieInhibit;
 	//runBlend = Mathf.Clamp01(runBlend);
-	animation.Blend("soldierRun",runBlend,blendSpeed);
+	GetComponent.<Animation>().Blend("soldierRun",runBlend,blendSpeed);
 	sprintBlend = sprintBlendCurve.Evaluate(forwardSpeed);//Sprint blend.
 	sprintBlend *= fallingInhibit;
 	sprintBlend *= landingInhibit;
 	sprintBlend *= crouchInhibit;
 	sprintBlend *= dieInhibit;
 	//sprintBlend = Mathf.Clamp01(sprintBlend);
-	animation.Blend("soldierSprint",sprintBlend,blendSpeed);
+	GetComponent.<Animation>().Blend("soldierSprint",sprintBlend,blendSpeed);
 	strafeBlend = strafeBlendCurve.Evaluate(Mathf.Abs(strafeSpeed)); //Strafing blend.
 	strafeBlend *= fallingInhibit;
 	strafeBlend *= landingInhibit;
@@ -195,22 +195,22 @@ function LateUpdate(){
 	}
 	if(!backward){
 		if(strafeSpeed > 0){
-			animation.Blend("soldierStrafeRight",strafeBlend,blendSpeed);
-			animation.Blend("soldierStrafeLeft",0,blendSpeed);
+			GetComponent.<Animation>().Blend("soldierStrafeRight",strafeBlend,blendSpeed);
+			GetComponent.<Animation>().Blend("soldierStrafeLeft",0,blendSpeed);
 		}
 		else{
-			animation.Blend("soldierStrafeLeft",strafeBlend,blendSpeed);
-			animation.Blend("soldierStrafeRight",0,blendSpeed);
+			GetComponent.<Animation>().Blend("soldierStrafeLeft",strafeBlend,blendSpeed);
+			GetComponent.<Animation>().Blend("soldierStrafeRight",0,blendSpeed);
 		}
 	}
 	else{
 		if(strafeSpeed > 0){
-			animation.Blend("soldierStrafeLeft",strafeBlend,blendSpeed);
-			animation.Blend("soldierStrafeRight",0,blendSpeed);
+			GetComponent.<Animation>().Blend("soldierStrafeLeft",strafeBlend,blendSpeed);
+			GetComponent.<Animation>().Blend("soldierStrafeRight",0,blendSpeed);
 		}
 		else{
-			animation.Blend("soldierStrafeRight",strafeBlend,blendSpeed);
-			animation.Blend("soldierStrafeLeft",0,blendSpeed);
+			GetComponent.<Animation>().Blend("soldierStrafeRight",strafeBlend,blendSpeed);
+			GetComponent.<Animation>().Blend("soldierStrafeLeft",0,blendSpeed);
 		}	
 	}
 	turnBlend = turnBlendCurve.Evaluate(Mathf.Abs(turnSpeed)); //Turn blend.
@@ -219,12 +219,12 @@ function LateUpdate(){
 	turnBlend *= crouchInhibit;
 	turnBlend *= dieInhibit;
 	if(turnSpeed > 0){
-		animation.Blend("soldierSpinRight",turnBlend,blendSpeed);
-		animation.Blend("soldierSpinLeft",0,blendSpeed);
+		GetComponent.<Animation>().Blend("soldierSpinRight",turnBlend,blendSpeed);
+		GetComponent.<Animation>().Blend("soldierSpinLeft",0,blendSpeed);
 	}
 	else{
-		animation.Blend("soldierSpinLeft",turnBlend,blendSpeed);
-		animation.Blend("soldierSpinRight",0,blendSpeed);	
+		GetComponent.<Animation>().Blend("soldierSpinLeft",turnBlend,blendSpeed);
+		GetComponent.<Animation>().Blend("soldierSpinRight",0,blendSpeed);	
 	}
 	//Crouch Idle animation blending. Blend values are calculated above for convenince.
 	if (crouchControllerScript != null){ //Works with a global crouch value that's handled in the crouch controller script.	
@@ -235,19 +235,19 @@ function LateUpdate(){
 		crouchIdleBlend *= landingInhibit;
 		crouchIdleBlend *= standInhibit;
 		crouchIdleBlend *= dieInhibit;
-		animation.Blend("soldierCrouch",crouchIdleBlend,0.05);
+		GetComponent.<Animation>().Blend("soldierCrouch",crouchIdleBlend,0.05);
 		crouchRunBlend = runBlendCurve.Evaluate(Mathf.Abs(forwardSpeed) * inverseCrouchSpeedMultiplier);//Crouch run blend.
 		crouchRunBlend *= fallingInhibit;
 		crouchRunBlend *= landingInhibit;
 		crouchRunBlend *= standInhibit;
 		crouchRunBlend *= dieInhibit;
-		animation.Blend("soldierCrouchRun",crouchRunBlend,0.05);
+		GetComponent.<Animation>().Blend("soldierCrouchRun",crouchRunBlend,0.05);
 		crouchSprintBlend = sprintBlendCurve.Evaluate(forwardSpeed * inverseCrouchSpeedMultiplier);//Crouch sprint blend.
 		crouchSprintBlend *= fallingInhibit;
 		crouchSprintBlend *= landingInhibit;
 		crouchSprintBlend *= standInhibit;
 		crouchSprintBlend *= dieInhibit;
-		animation.Blend("soldierCrouchSprint",crouchSprintBlend,0.05);
+		GetComponent.<Animation>().Blend("soldierCrouchSprint",crouchSprintBlend,0.05);
 		crouchStrafeBlend = strafeBlendCurve.Evaluate(Mathf.Abs(strafeSpeed) * inverseCrouchSpeedMultiplier); //Crouch strafe blend.
 		crouchStrafeBlend *= fallingInhibit;
 		crouchStrafeBlend *= landingInhibit; 
@@ -255,22 +255,22 @@ function LateUpdate(){
 		crouchStrafeBlend *= dieInhibit;
 		if(!backward){
 			if(strafeSpeed > 0){
-				animation.Blend("soldierCrouchStrafeRight",crouchStrafeBlend,blendSpeed*2);
-				animation.Blend("soldierCrouchStrafeLeft",0,blendSpeed*2);
+				GetComponent.<Animation>().Blend("soldierCrouchStrafeRight",crouchStrafeBlend,blendSpeed*2);
+				GetComponent.<Animation>().Blend("soldierCrouchStrafeLeft",0,blendSpeed*2);
 			}
 			else{
-				animation.Blend("soldierCrouchStrafeLeft",crouchStrafeBlend,blendSpeed*2);
-				animation.Blend("soldierCrouchStrafeRight",0,blendSpeed*2);
+				GetComponent.<Animation>().Blend("soldierCrouchStrafeLeft",crouchStrafeBlend,blendSpeed*2);
+				GetComponent.<Animation>().Blend("soldierCrouchStrafeRight",0,blendSpeed*2);
 			}
 		}
 		else{
 			if(strafeSpeed > 0){
-				animation.Blend("soldierCrouchStrafeLeft",crouchStrafeBlend,blendSpeed*2);
-				animation.Blend("soldierCrouchStrafeRight",0,blendSpeed*2);			
+				GetComponent.<Animation>().Blend("soldierCrouchStrafeLeft",crouchStrafeBlend,blendSpeed*2);
+				GetComponent.<Animation>().Blend("soldierCrouchStrafeRight",0,blendSpeed*2);			
 			}
 			else{
-				animation.Blend("soldierCrouchStrafeRight",crouchStrafeBlend,blendSpeed*2);
-				animation.Blend("soldierCrouchStrafeLeft",0,blendSpeed*2);			
+				GetComponent.<Animation>().Blend("soldierCrouchStrafeRight",crouchStrafeBlend,blendSpeed*2);
+				GetComponent.<Animation>().Blend("soldierCrouchStrafeLeft",0,blendSpeed*2);			
 			}
 		}
 		crouchTurnBlend = turnBlendCurve.Evaluate(Mathf.Abs(turnSpeed)); //Crouch turn blend.
@@ -279,12 +279,12 @@ function LateUpdate(){
 		crouchTurnBlend *= standInhibit;
 		crouchTurnBlend *= dieInhibit;
 		if(turnSpeed > 0){
-			animation.Blend("soldierCrouchSpinRight", crouchTurnBlend, blendSpeed);
-			animation.Blend("soldierCrouchSpinLeft",0, blendSpeed);
+			GetComponent.<Animation>().Blend("soldierCrouchSpinRight", crouchTurnBlend, blendSpeed);
+			GetComponent.<Animation>().Blend("soldierCrouchSpinLeft",0, blendSpeed);
 		}
 		else{
-			animation.Blend("soldierCrouchSpinLeft", crouchTurnBlend, blendSpeed);
-			animation.Blend("soldierCrouchSpinRight",0, blendSpeed);			
+			GetComponent.<Animation>().Blend("soldierCrouchSpinLeft", crouchTurnBlend, blendSpeed);
+			GetComponent.<Animation>().Blend("soldierCrouchSpinRight",0, blendSpeed);			
 		}		
 	}
 	var timeAfterHit : float = Time.time - lastHitTime; //Hit blend.
@@ -292,13 +292,13 @@ function LateUpdate(){
 	hitBlend = getHitBlend;
 	hitBlend *= dieInhibit;
 	var frontHitBlend : float = hitBlend * Mathf.Max(hitDirection.z,0);
-	animation.Blend("soldierHitFront",frontHitBlend,blendSpeed);
+	GetComponent.<Animation>().Blend("soldierHitFront",frontHitBlend,blendSpeed);
 	var backHitBlend : float = hitBlend * -Mathf.Min(hitDirection.z,0);
-	animation.Blend("soldierHitBack",backHitBlend,blendSpeed);
+	GetComponent.<Animation>().Blend("soldierHitBack",backHitBlend,blendSpeed);
 	var rightHitBlend : float = hitBlend * Mathf.Max(hitDirection.x,0);
-	animation.Blend("soldierHitRight",rightHitBlend,blendSpeed);
+	GetComponent.<Animation>().Blend("soldierHitRight",rightHitBlend,blendSpeed);
 	var leftHitBlend : float = hitBlend * -Mathf.Min(hitDirection.x,0);
-	animation.Blend("soldierHitLeft",leftHitBlend,blendSpeed);
+	GetComponent.<Animation>().Blend("soldierHitLeft",leftHitBlend,blendSpeed);
 	var timeSinceDeath : float = Time.time - deathTime;
 	var dying : boolean = false;
 	if(timeSinceDeath > 0.1){
@@ -310,18 +310,18 @@ function LateUpdate(){
 	if (health <= 0){  //Die blend.
 		dieBlend = 1.0;
 		if (getHitDirection.z > 0){
-			animation["soldierDieFront"].time = timeSinceDeath;
-			if(animation["soldierDieFront"].time > animation["soldierDieFront"].length){
-				animation["soldierDieFront"].time = animation["soldierDieFront"].length;
+			GetComponent.<Animation>()["soldierDieFront"].time = timeSinceDeath;
+			if(GetComponent.<Animation>()["soldierDieFront"].time > GetComponent.<Animation>()["soldierDieFront"].length){
+				GetComponent.<Animation>()["soldierDieFront"].time = GetComponent.<Animation>()["soldierDieFront"].length;
 			}
-			animation.Blend("soldierDieFront",dieBlend,blendSpeed);
+			GetComponent.<Animation>().Blend("soldierDieFront",dieBlend,blendSpeed);
 		}
 		else{
-			animation["soldierDieBack"].time = timeSinceDeath;
-			if(animation["soldierDieBack"].time > animation["soldierDieBack"].length){
-				animation["soldierDieBack"].time = animation["soldierDieBack"].length;
+			GetComponent.<Animation>()["soldierDieBack"].time = timeSinceDeath;
+			if(GetComponent.<Animation>()["soldierDieBack"].time > GetComponent.<Animation>()["soldierDieBack"].length){
+				GetComponent.<Animation>()["soldierDieBack"].time = GetComponent.<Animation>()["soldierDieBack"].length;
 			}
-			animation.Blend("soldierDieBack",dieBlend,blendSpeed);
+			GetComponent.<Animation>().Blend("soldierDieBack",dieBlend,blendSpeed);
 		}
 	}
 	else{
@@ -337,20 +337,20 @@ function LateUpdate(){
 	else{
 		animationSpeed = -animationSpeedCurve.Evaluate(overallSpeed);
 	}
-	animation["soldierWalk"].speed = animationSpeed;
-	animation["soldierRun"].speed = animationSpeed;
-	animation["soldierSprint"].speed = animationSpeed;
-	animation["soldierStrafeRight"].speed = animationSpeed;
-	animation["soldierStrafeLeft"].speed = animationSpeed;
-	animation["soldierCrouchRun"].speed = animationSpeed;
-	animation["soldierCrouchSprint"].speed = animationSpeed;
-	animation["soldierCrouchStrafeRight"].speed = animationSpeed;
-	animation["soldierCrouchStrafeLeft"].speed = animationSpeed;
+	GetComponent.<Animation>()["soldierWalk"].speed = animationSpeed;
+	GetComponent.<Animation>()["soldierRun"].speed = animationSpeed;
+	GetComponent.<Animation>()["soldierSprint"].speed = animationSpeed;
+	GetComponent.<Animation>()["soldierStrafeRight"].speed = animationSpeed;
+	GetComponent.<Animation>()["soldierStrafeLeft"].speed = animationSpeed;
+	GetComponent.<Animation>()["soldierCrouchRun"].speed = animationSpeed;
+	GetComponent.<Animation>()["soldierCrouchSprint"].speed = animationSpeed;
+	GetComponent.<Animation>()["soldierCrouchStrafeRight"].speed = animationSpeed;
+	GetComponent.<Animation>()["soldierCrouchStrafeLeft"].speed = animationSpeed;
 	var turnAnimationSpeed : float = turnAnimationSpeedCurve.Evaluate(Mathf.Abs(turnSpeed));
-	animation["soldierSpinRight"].speed = turnAnimationSpeed;
-	animation["soldierSpinLeft"].speed = turnAnimationSpeed;
-	animation["soldierCrouchSpinRight"].speed = turnAnimationSpeed;
-	animation["soldierCrouchSpinLeft"].speed = turnAnimationSpeed;
+	GetComponent.<Animation>()["soldierSpinRight"].speed = turnAnimationSpeed;
+	GetComponent.<Animation>()["soldierSpinLeft"].speed = turnAnimationSpeed;
+	GetComponent.<Animation>()["soldierCrouchSpinRight"].speed = turnAnimationSpeed;
+	GetComponent.<Animation>()["soldierCrouchSpinLeft"].speed = turnAnimationSpeed;
 	//Torso recoil when firing.
 	if (firing){
 		var spine1 = transform.Find("Bip01/Bip01 Pelvis/Bip01 Spine/Bip01 Spine1");

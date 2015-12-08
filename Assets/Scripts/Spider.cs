@@ -38,9 +38,9 @@ public class Spider : MonoBehaviour {
 	}
 
 	IEnumerator GoThere() {
-		this.animation.wrapMode = WrapMode.Loop;
-		this.animation ["Run"].speed = 3.0f;
-		this.animation.Play ("Run");
+		this.GetComponent<Animation>().wrapMode = WrapMode.Loop;
+		this.GetComponent<Animation>() ["Run"].speed = 3.0f;
+		this.GetComponent<Animation>().Play ("Run");
 		
 		if(transform.position == navMesh.destination) {
 			notThere = false;
@@ -51,8 +51,8 @@ public class Spider : MonoBehaviour {
 
 	IEnumerator Attack() {
 		while (health > 0 && !onPause) {
-			this.animation.wrapMode = WrapMode.Once;
-			this.gameObject.animation.CrossFade ("Attack_Left");
+			this.GetComponent<Animation>().wrapMode = WrapMode.Once;
+			this.gameObject.GetComponent<Animation>().CrossFade ("Attack_Left");
 			transform.LookAt(spaceship.transform.position);
 			
 			spaceship.GetComponent<Spaceship> ().GetHit (this.damage);
@@ -63,10 +63,10 @@ public class Spider : MonoBehaviour {
 	IEnumerator WaitAndDisappear() {
 		navMesh.Stop ();
 		notThere = false;
-		this.animation.Stop ();
+		this.GetComponent<Animation>().Stop ();
 
-		this.animation.wrapMode = WrapMode.Once;
-		this.gameObject.animation.Play("Death");
+		this.GetComponent<Animation>().wrapMode = WrapMode.Once;
+		this.gameObject.GetComponent<Animation>().Play("Death");
 		yield return new WaitForSeconds(3);
 		StopAllCoroutines ();
 		Destroy (gameObject);

@@ -8,7 +8,7 @@ private var buffer : float = 0.02;
 
 
 function Start(){
-	renderer.enabled = true;
+	GetComponent.<Renderer>().enabled = true;
 	castingPoint = transform.Find("castingPoint");
 	castingPoint.parent = transform.parent;
 	transform.parent = transform.root;
@@ -44,5 +44,5 @@ function LateUpdate () {
 	if(hits.Length == 0){
 		opacity = 0.0;
 	}
-	renderer.material.color.a = opacity;
+	GetComponent.<Renderer>().material.color.a = opacity;
 }

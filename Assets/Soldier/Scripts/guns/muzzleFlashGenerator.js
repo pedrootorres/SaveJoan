@@ -11,7 +11,7 @@ function Update () {
 			nextMuzzleFlashTime = Time.time + (1.0 / rate);
 			var newMuzzleFlash : GameObject = Instantiate(muzzleFlashPrefab,transform.position,transform.rotation);
 			var materialId : int = Mathf.RoundToInt(Random.Range(0,materials.Length));
-			newMuzzleFlash.renderer.material = materials[materialId];
+			newMuzzleFlash.GetComponent.<Renderer>().material = materials[materialId];
 			newMuzzleFlash.transform.parent = transform;
 		}
 	}

@@ -27,11 +27,11 @@ public class Turret6 : MonoBehaviour {
 		foundTarget = false;
 		alreadyShooting = false;
 
-		this.transform.FindChild ("Head").FindChild ("Lightning Spark").particleSystem.enableEmission = true;
-		this.transform.FindChild ("Head").FindChild ("Lightning Spark").FindChild ("Lightning").particleSystem.enableEmission = true;
-		this.transform.FindChild ("Head").FindChild ("Lightning Spark").FindChild ("Spakles").particleSystem.enableEmission = true;
-		this.transform.FindChild ("Head").FindChild ("Lightning Spark").FindChild ("Ring").particleSystem.enableEmission = true;
-		this.transform.FindChild ("Head").FindChild ("Lightning Spark").FindChild ("Ray").particleSystem.enableEmission = true;
+		this.transform.FindChild ("Head").FindChild ("Lightning Spark").GetComponent<ParticleSystem>().enableEmission = true;
+		this.transform.FindChild ("Head").FindChild ("Lightning Spark").FindChild ("Lightning").GetComponent<ParticleSystem>().enableEmission = true;
+		this.transform.FindChild ("Head").FindChild ("Lightning Spark").FindChild ("Spakles").GetComponent<ParticleSystem>().enableEmission = true;
+		this.transform.FindChild ("Head").FindChild ("Lightning Spark").FindChild ("Ring").GetComponent<ParticleSystem>().enableEmission = true;
+		this.transform.FindChild ("Head").FindChild ("Lightning Spark").FindChild ("Ray").GetComponent<ParticleSystem>().enableEmission = true;
 	}
 	
 	// Update is called once per frame
@@ -53,7 +53,7 @@ public class Turret6 : MonoBehaviour {
 		//Check if what's ahead correspond to the target list.
 		for (int j = 0; j < hits.Length && !stop; j++) {
 			for (var i = 0; i < targetRootName.Length && !stop; i++){
-				if (hits[j].collider.transform.root.name == targetRootName[i]){
+				if (hits[j].GetComponent<Collider>().transform.root.name == targetRootName[i]){
 					isTarget = true;
 					stop = true;
 					shootMe = j;
@@ -87,7 +87,7 @@ public class Turret6 : MonoBehaviour {
 		} else {
 			this.transform.FindChild("Head").FindChild("Lightning Strike").LookAt(null);
 
-			this.transform.FindChild ("Head").FindChild ("Lightning Strike").particleSystem.enableEmission = false;
+			this.transform.FindChild ("Head").FindChild ("Lightning Strike").GetComponent<ParticleSystem>().enableEmission = false;
 		}
 	}
 	
@@ -106,18 +106,18 @@ public class Turret6 : MonoBehaviour {
 			alreadyShooting = true;
 			this.transform.FindChild("Head").LookAt(hit.transform.position);
 			this.transform.FindChild ("Head").FindChild ("Lightning Strike").GetComponent<ParticleSystemRenderer> ().lengthScale = range+1;
-			this.transform.FindChild ("Head").FindChild ("Lightning Strike").particleSystem.enableEmission = true;
+			this.transform.FindChild ("Head").FindChild ("Lightning Strike").GetComponent<ParticleSystem>().enableEmission = true;
 			
-			if(hit.collider.gameObject.name == "Spider(Clone)") {
-				hit.collider.GetComponent<Spider>().GetHit(damage);
-			} else if(hit.collider.gameObject.name == "Troll(Clone)") {
-				hit.collider.GetComponent<Troll>().GetHit(damage);
-			} else if (hit.collider.gameObject.name == "Robot(Clone)") {
-				hit.collider.GetComponent<Robot>().GetHit(damage);
-			} else if (hit.collider.gameObject.name == "Demon(Clone)") {
-				hit.collider.GetComponent<Demon>().GetHit(damage);
-			} else if (hit.collider.gameObject.name == "Alien(Clone)") {
-				hit.collider.GetComponent<Alien>().GetHit(damage);
+			if(hit.GetComponent<Collider>().gameObject.name == "Spider(Clone)") {
+				hit.GetComponent<Collider>().GetComponent<Spider>().GetHit(damage);
+			} else if(hit.GetComponent<Collider>().gameObject.name == "Troll(Clone)") {
+				hit.GetComponent<Collider>().GetComponent<Troll>().GetHit(damage);
+			} else if (hit.GetComponent<Collider>().gameObject.name == "Robot(Clone)") {
+				hit.GetComponent<Collider>().GetComponent<Robot>().GetHit(damage);
+			} else if (hit.GetComponent<Collider>().gameObject.name == "Demon(Clone)") {
+				hit.GetComponent<Collider>().GetComponent<Demon>().GetHit(damage);
+			} else if (hit.GetComponent<Collider>().gameObject.name == "Alien(Clone)") {
+				hit.GetComponent<Collider>().GetComponent<Alien>().GetHit(damage);
 			}
 			
 			yield return new WaitForSeconds(2f);
